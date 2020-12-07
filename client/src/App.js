@@ -15,7 +15,6 @@ export default function App() {
 			axios.get("http://localhost:5000/api/movies") // Study this endpoint with Postman
 				.then((response) => {
 					setMovieList(response.data);
-					console.log(movieList);
 					// Study this response with a breakpoint or log statements
 					// and set the response data as the 'movieList' slice of state
 				})
@@ -43,13 +42,15 @@ export default function App() {
 			<Route
 				exact
 				path="/"
-				render={(props) => <MovieList {...props} />}
+				render={(props) => (
+					<MovieList {...props} movies={movieList} />
+				)}
 			/>
 			{/* <Route exact path="/" component={MovieList} /> */}
 
 			<Route
 				path="/movies/:id"
-				render={(props) => <Movie {...props} />}
+				render={(props) => <Movie {...props} movies={movieList} />}
 			/>
 			{/* <div>Replace this Div with your Routes</div> */}
 		</div>
